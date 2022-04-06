@@ -52,7 +52,6 @@ while user_input1 != 'quit':
                 for i in range(0,len(word)):
                     if  wordList[i] == user_input:
                         blankWord[i] = user_input
-                print(blankWord)
             else:
                 guess_remaining -= 1
         elif len(user_input) > 1 and user_input.isalpha():
