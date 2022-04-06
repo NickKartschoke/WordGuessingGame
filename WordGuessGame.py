@@ -7,7 +7,15 @@ def readFile():
     file_path = (r"C:\Users\nickk\repo\words_alpha.txt")
     f = open(file_path)
     word_dict = f.read().split('\n')
+    f.close()
     return word_dict
+
+def convertToString(list):
+    newString = ""
+    for i in list:
+        newString += i
+    return newString
+
 lines = readFile()
 check = False
 user_input1 = 'no'
@@ -26,7 +34,7 @@ while user_input1 != 'quit':
     wordsUsed.append(word)
     guess_remaining = 7
     blankWord = list('_'*len(word))
-    print(blankWord)
+    print(f"There is {len(blankWord)} letters, and you will have {guess_remaining} guesses. Good Luck!")
     check = False
     while guess_remaining > 0:
         char_loaction = list()
@@ -47,16 +55,16 @@ while user_input1 != 'quit':
                 print(blankWord)
             else:
                 guess_remaining -= 1
-                print("Guesses remaining: ", guess_remaining)
         elif len(user_input) > 1 and user_input.isalpha():
             check = user_input == word
             if check == True:
                 blankWord = list(user_input)
             else:
                 guess_remaining -= 1
-                print("Guesses remaining: ", guess_remaining)
         else:
             print("Incorrect character!")
+        wordAsString = convertToString(blankWord)
+        print(f"You progress is {wordAsString}, and you have {guess_remaining} guesses remaining")
     if guess_remaining == 0:
         print("You lose! The word was: ", word)
         losses += 1
@@ -67,4 +75,3 @@ while user_input1 != 'quit':
         user_input1.lower()
     else:
         break
-f.close()
